@@ -6,6 +6,7 @@ import numpy as np
 
 
 # tau is the number theoretic function that counts the number of divisors of a given integer
+#we can also use formula to solve this which we will use in tau2
 
 def tau(n):
     ct = 0
