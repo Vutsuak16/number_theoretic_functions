@@ -9,17 +9,16 @@ from sympy.ntheory import factorint
 # tau is the number theoretic function that counts the number of divisors of a given integer
 # we can also use formula to solve this which we will use in prime-factors
 
-def sigma(n):
-    ct = 0
-    for i in range(1, n + 1):
-        if n % i == 0:
-            ct += i
-    return ct
-
-
-def prime_factors(n):
+def mobius(n):
     dict = factorint(n)
-    return dict
+    factor_count = list(dict.values())
+    for i in factor_count:
+        if i != 1:
+            return 0
+    if n == 1:
+        return 1
+    else:
+        return (-1) ** (len(factor_count))
 
 
 def matrix():
@@ -28,7 +27,7 @@ def matrix():
     for i in range(2, 21):
         array = []
         for j in range(1, i + 1):
-            l = sigma(j)
+            l = mobius(j)
             array.append(l)
 
         circulant_matrix.append(circulant(array))
