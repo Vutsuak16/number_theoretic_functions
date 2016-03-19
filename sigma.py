@@ -1,7 +1,7 @@
 __name__ = "vutsuak"
 
 from scipy.linalg import circulant
-from numpy.linalg import det
+from numpy.linalg import det,eigvals
 import numpy as np
 from sympy.ntheory import factorint
 
@@ -23,6 +23,7 @@ def prime_factors(n):
 
 
 def matrix():
+    eigenvalues=[]
     determinant = []
     circulant_matrix = []
     for i in range(2, 21):
@@ -32,10 +33,14 @@ def matrix():
             array.append(l)
 
         circulant_matrix.append(circulant(array))
+        eigenvalues.append(eigvals(circulant_matrix[-1]))
         determinant.append(det(np.transpose(circulant_matrix[-1])))
     for i in range(len(determinant)):
         print(np.transpose(circulant_matrix[i]))
+        print("the eigenvalues of circulant matrix  for n= " + str(i + 2) + " is " + str(eigenvalues[i]))
         print("the determinant of circulant matrix  for n= " + str(i + 2) + " is " + str(determinant[i]))
+        print()
+
 
 
 if __name__ == "vutsuak":
