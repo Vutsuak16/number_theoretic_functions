@@ -4,10 +4,9 @@ from scipy.linalg import circulant
 from numpy.linalg import det,eigvals
 import numpy as np
 from sympy.ntheory import factorint
+from pandas import DataFrame
 
 
-# tau is the number theoretic function that counts the number of divisors of a given integer
-# we can also use formula to solve this which we will use in prime factors
 
 def tau(n):
     ct = 0
@@ -35,6 +34,9 @@ def matrix():
         circulant_matrix.append(circulant(array))
         eigenvalues.append(eigvals(circulant_matrix[-1]))
         determinant.append(det(np.transpose(circulant_matrix[-1])))
+    i=range(2,21)
+    df=DataFrame({'n':i,'determininant':determinant,'eigenvalues':eigenvalues})
+    df.to_excel('rough.xlsx', index=False)
     for i in range(len(determinant)):
         print(np.transpose(circulant_matrix[i]))
         print("the eigenvalues of circulant matrix  for n= " + str(i + 2) + " is " + str(eigenvalues[i]))
